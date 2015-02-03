@@ -3,7 +3,7 @@
 
 	app.config(function ($routeProvider) {
 		$routeProvider.when('/', {
-			controller: 'loginCtrl',
+			controller: 'LoginCtrl',
 			templateUrl: '/app/partials/login.html'
 		})
 	});

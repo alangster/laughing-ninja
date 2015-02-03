@@ -1,0 +1,20 @@
+<div ng-controller="LoginCtrl as login">
+	<h3>Login</h3></br>
+	<form name="login.loginForm" ng-submit="login.login()">
+		<p ng-if="login.errors.login">{{ login.errors.login }}</p>
+		<input name="email" ng-model="login.user.email" type="email" placeholder="Email"></br>
+		<input name="password" ng-model="login.user.password" type="password" placeholder="Password"/></br>
+		<input type="submit" value="Log In" />
+	</form>
+	</br>
+
+	<h3>Sign Up</h3></br>
+	<form name="signUpForm" ng-submit="login.signUp()">
+		<p ng-if="login.errors.signup">Email {{ login.errors.signup }}</p>
+		</br>
+		<input name="email" ng-model="login.newUser.email" type="email" placeholder="Email">
+		</br>
+		<input name="password" ng-model="login.newUser.password" type="password" placeholder="Password"></br>
+		<input type="submit" value="Sign Up" />
+	</form>
+</div>
