@@ -3,7 +3,7 @@ angular.module('TodoApp')
 	.controller('LoginCtrl', LoginCtrl);
 
 
-function LoginCtrl($http, $cookieStore, $location) {
+function LoginCtrl($http, $cookieStore, $location, TodosCollectionService) {
 	this.user = {
 		email: "",
 		password: ""
