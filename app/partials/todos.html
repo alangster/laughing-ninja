@@ -9,8 +9,9 @@
 		</form>
 	</div>
 	
-	{{ tdc.todos }}
-	<todo ng-repeat="todo in tdc.todos"></todo>
+	{{ tdc.TodosCollectionService.todos }}
+	{{ tdc.errors.todoFetch }}
+	<todo ng-repeat="todo in tdc.TodosCollectionService.todos"></todo>
 
 	
 </div>

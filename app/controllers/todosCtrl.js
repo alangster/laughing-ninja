@@ -3,21 +3,31 @@ angular.module('TodoApp')
 	.controller('TodosCtrl', TodosCtrl);
 
 
-function TodosCtrl($cookieStore, $http, TodosCollectionService) {
+function TodosCtrl(Api, TodosCollectionService) {
 
-	this.todos = TodosCollectionService.getTodos();
-	this.$http = $http;
-	this.$cookieStore = $cookieStore;
-	this.url = 'http://recruiting-api.nextcapital.com/users/' + $cookieStore.get('user_id') + '/todos';
+	// this.todos = TodosCollectionService.todos;
+	this.Api = Api;
+	this.errors = {
+		todoFetch: null,
+	}
+	this.TodosCollectionService = TodosCollectionService;
+
+	// var that = this;
+	// this.$watch(
+	// 	function() {return TodosCollectionService.newTodo},
+	// 	function(TCSValue) {
+	// 		if (TCSValue) {
+	// 			that.todos.push(TodosCollectionService.newestTodo());
+	// 		}
+	// 	}
+	// )
 
 	var that = this;
 	(function init() {
-		that.$http.get(that.url + '.json?api_token=' + $cookieStore.get('api_token'))
-			.success(function(response){
-				TodosCollectionService.setTodos(response);
-			})
-			.error(function(response){
-				console.log(response);
-			})
+		that.Api.fetchTodos().then(function(fetchedTodos) {
+			TodosCollectionService.setTodos(fetchedTodos);
+		}, function() {
+			that.erros.todoFetch = "Experienced a problem loading your todos.";
+		})
 	})();
 }

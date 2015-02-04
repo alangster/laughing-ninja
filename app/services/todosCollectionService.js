@@ -4,19 +4,29 @@ angular.module('TodoApp')
 
 
 function TodosCollectionService() {
-	var todos = [];
+	this.todos = [];
+
+	// this.newTodo = false;
 
 	this.getTodos = function() {
-		return todos;
+		return this.todos;
 	}
 
 	this.setTodos = function(todosCollection) {
-		todos = todosCollection;
+		this.todos = todosCollection;
+		return this;
 	};
 
 	this.addTodo = function(todo) {
-		todos.push(todo);
+		this.todos.push(todo);
+		// this.newTodo = true;
+		return this;
 	};
+
+	this.newestTodo = function() {
+		// this.newTodo = false;
+		return this.todos[todos.length - 1];
+	}
 
 	this.deleteTodo = function(todo) {
 
