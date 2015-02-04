@@ -46,30 +46,3 @@ function TodosCtrl(Api, TodosCollectionService) {
 		return predicate(todo);
 	}
 }
-
-// TodosCtrl.prototype.predicate = function(todo) {
-// 	return true;
-// }
-
-// TodosCtrl.prototype.status = function(todo) {
-// 	console.log(this.predicate);
-// 	return this.predicate(todo);
-// }
-
-// TodosCtrl.prototype.displayAll = function() {
-// 	this.predicate = function(input) {
-// 				return true;
-// 			}
-// }
-
-// TodosCtrl.prototype.displayComplete = function() {
-// 	this.predicate = function(input) {
-// 				return input.is_complete;
-// 			}
-// }
-
-// TodosCtrl.prototype.displayIncomplete = function() {
-// 	this.predicate = function(input) {
-// 				return !input.is_complete;
-// 			}
-// }

@@ -20,11 +20,4 @@ function TodosCollectionService() {
 		return this;
 	};
 
-	this.newestTodo = function() {
-		return this.todos[todos.length - 1];
-	}
-
-	this.deleteTodo = function(todo) {
-
-	}
 }
