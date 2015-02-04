@@ -1,7 +1,12 @@
 <div ng-controller="TodosCtrl as tdc">
 
 	<div ng-controller="CreateTodoCtrl as creator">
-
+		<form ng-submit="creator.addTodo()">
+			<input type="text" 
+						 ng-model="creator.newTodo.description"
+						 placeholder="What must I do?" />
+			<input type="submit" value="Put it on my list!" />
+		</form>
 	</div>
 	
 	{{ tdc.todos }}

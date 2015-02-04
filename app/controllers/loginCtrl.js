@@ -3,7 +3,7 @@ angular.module('TodoApp')
 	.controller('LoginCtrl', LoginCtrl);
 
 
-function LoginCtrl($http, $cookieStore, $location, TodosCollectionService) {
+function LoginCtrl($cookieStore, $location, TodosCollectionService, Api) {
 	this.user = {
 		email: "",
 		password: ""
@@ -19,15 +19,11 @@ function LoginCtrl($http, $cookieStore, $location, TodosCollectionService) {
 		signup: null
 	};
 
-	this.$http = $http;
-	this.$cookieStore = $cookieStore;
 	this.$location = $location;
-	this.url = "http://recruiting-api.nextcapital.com/users";
+	this.Api = Api;
 }
 
-LoginCtrl.prototype.successResponse = function(response) {
-	this.$cookieStore.put('api_token', response.api_token);
-	this.$cookieStore.put('user_id', response.id);
+LoginCtrl.prototype.redirect = function() {
 	this.$location.path('/todos');
 }
 
@@ -36,17 +32,15 @@ LoginCtrl.prototype.login = function() {
 		email: this.user.email,
 		password: this.user.password
 	}
-	var loginUrl = this.url + '/sign_in';
 	var that = this;
-	this.$http.post(loginUrl, data)
-		.success(function(response) {
-			that.errors.login = null;
-			that.successResponse(response);
-		})
-		.error(function(response) {
-			that.user.password = "";
-			that.errors.login = "Invalid email/password combination.";
-		})
+	
+	this.Api.login(data).then(function() {
+		that.errors.login = null;
+		that.redirect();
+	}, function() {
+		that.user.password = "";
+		that.errors.login = "Invalid email/password combination.";
+	});
 }
 
 LoginCtrl.prototype.signUp = function() {
@@ -55,14 +49,12 @@ LoginCtrl.prototype.signUp = function() {
 		password: this.newUser.password
 	}
 	var that = this;
-	this.$http.post(this.url, data)
-		.success(function(response) {
-			that.errors.signup = null;
-			that.successResponse(response);
-		})
-		.error(function(response) {
-			that.errors.signup = response.email[0];
-		})
+	this.Api.signUp(data).then(function() {
+		that.errors.signup = null;
+		that.redirect();
+	}, function(reason) {
+		that.errors.signup = reason;
+	});
 }
 
 
