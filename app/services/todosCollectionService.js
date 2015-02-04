@@ -6,8 +6,6 @@ angular.module('TodoApp')
 function TodosCollectionService() {
 	this.todos = [];
 
-	// this.newTodo = false;
-
 	this.getTodos = function() {
 		return this.todos;
 	}
@@ -19,12 +17,10 @@ function TodosCollectionService() {
 
 	this.addTodo = function(todo) {
 		this.todos.push(todo);
-		// this.newTodo = true;
 		return this;
 	};
 
 	this.newestTodo = function() {
-		// this.newTodo = false;
 		return this.todos[todos.length - 1];
 	}
 

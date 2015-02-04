@@ -5,29 +5,71 @@ angular.module('TodoApp')
 
 function TodosCtrl(Api, TodosCollectionService) {
 
-	// this.todos = TodosCollectionService.todos;
-	this.Api = Api;
 	this.errors = {
 		todoFetch: null,
 	}
-	this.TodosCollectionService = TodosCollectionService;
 
-	// var that = this;
-	// this.$watch(
-	// 	function() {return TodosCollectionService.newTodo},
-	// 	function(TCSValue) {
-	// 		if (TCSValue) {
-	// 			that.todos.push(TodosCollectionService.newestTodo());
-	// 		}
-	// 	}
-	// )
+	this.TodosCollectionService = TodosCollectionService;
 
 	var that = this;
 	(function init() {
-		that.Api.fetchTodos().then(function(fetchedTodos) {
+		Api.fetchTodos().then(function(fetchedTodos) {
 			TodosCollectionService.setTodos(fetchedTodos);
 		}, function() {
-			that.erros.todoFetch = "Experienced a problem loading your todos.";
+			that.errors.todoFetch = "Experienced a problem loading your todos.";
 		})
 	})();
+
+	var predicate = function(input) {
+		return input;
+	}
+
+	this.displayAll = function() {
+		predicate = function(input) {
+			return input;
+		}
+	}
+
+	this.displayComplete = function() {
+		predicate = function(input) {
+			return input.is_complete;
+		}
+	}
+
+	this.displayIncomplete = function() {
+		predicate = function(input) {
+			return !input.is_complete;
+		}
+	}
+
+	this.status = function(todo) {
+		return predicate(todo);
+	}
 }
+
+// TodosCtrl.prototype.predicate = function(todo) {
+// 	return true;
+// }
+
+// TodosCtrl.prototype.status = function(todo) {
+// 	console.log(this.predicate);
+// 	return this.predicate(todo);
+// }
+
+// TodosCtrl.prototype.displayAll = function() {
+// 	this.predicate = function(input) {
+// 				return true;
+// 			}
+// }
+
+// TodosCtrl.prototype.displayComplete = function() {
+// 	this.predicate = function(input) {
+// 				return input.is_complete;
+// 			}
+// }
+
+// TodosCtrl.prototype.displayIncomplete = function() {
+// 	this.predicate = function(input) {
+// 				return !input.is_complete;
+// 			}
+// }
