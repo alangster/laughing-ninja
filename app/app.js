@@ -1,10 +1,9 @@
 (function() {
 	var app = angular.module('TodoApp', ['ngRoute', 'ngCookies']);
 
-	var requireLogin = function($location, $q, $cookieStore) {
+	var requireLogin = function($location, $q, Api) {
 		var deferred = $q.defer();
-
-		if (!$cookieStore.get('api_token') || !$cookieStore.get('user_id')) {
+		if (!Api.isLoggedIn()) {
 			deferred.reject();
 			$location.path('/');
 		} else {
@@ -16,7 +15,6 @@
 	app.config(function ($routeProvider) {
 		$routeProvider
 			.when('/', {
-				controller: 'LoginCtrl',
 				templateUrl: '/app/partials/login.html'
 			})
 			.when('/todos', {

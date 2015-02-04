@@ -11,20 +11,18 @@ function CreateTodoCtrl(Api, TodosCollectionService) {
 		todoCreation: null
 	}
 
-	this.Api = Api;
-	this.TodosCollectionService = TodosCollectionService;
+	this.addTodo = function() {
+		var that = this;
+		var todoDescription = this.newTodo.description.trim();
+		if (!todoDescription) { return };
+		
+		Api.addNewTodo(todoDescription).then(function(result) {
+			that.errors.todoCreation = null;
+			that.newTodo.description = "";
+			TodosCollectionService.addTodo(result);
+		}, function() {
+			that.errors.todoCreation = "Could not save Todo.";
+		});
+	}
 }
 
-CreateTodoCtrl.prototype.addTodo = function() {
-	var that = this;
-	var todoDescription = this.newTodo.description.trim();
-	if (!todoDescription) { return };
-	
-	this.Api.addNewTodo(todoDescription).then(function(result) {
-		that.errors.todoCreation = null;
-		that.newTodo.description = "";
-		that.TodosCollectionService.addTodo(result);
-	}, function() {
-		that.errors.todoCreation = "Could not save Todo.";
-	});
-}

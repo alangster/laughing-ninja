@@ -4,14 +4,25 @@
 		<form ng-submit="creator.addTodo()">
 			<input type="text" 
 						 ng-model="creator.newTodo.description"
-						 placeholder="What must I do?" />
-			<input type="submit" value="Put it on my list!" />
+						 placeholder="What must you do?" />
+			<input type="submit" value="Put it on the list!" />
 		</form>
 	</div>
 	
 	{{ tdc.TodosCollectionService.todos }}
 	{{ tdc.errors.todoFetch }}
-	<todo ng-repeat="todo in tdc.TodosCollectionService.todos"></todo>
+	<input type="text" ng-model="query" />
+	<button ng-click="tdc.displayAll()">All Todos</button>
+	<button ng-click="tdc.displayComplete()">Complete</button>
+	<button ng-click="tdc.displayIncomplete()">Incomplete</button>
+
+	<ul>
+		<li ng-repeat="todo in tdc.TodosCollectionService.todos | filter:query | filter:tdc.status"
+			  ng-model="todo">
+			<label>{{ todo.description }}</label>
+		</li>
+	</ul>
+			
 
 	
 </div>
