@@ -15,6 +15,10 @@ function Api($http, $q) {
 		userId = id;
 	};
 
+	function todoData(todo) {
+		return {'api_token': token, 'todo': { 'description': todo.description, 'is_complete': todo.is_complete } };	
+	}
+
 	this.isLoggedIn = function() {
 		return loggedIn;
 	}
@@ -72,6 +76,20 @@ function Api($http, $q) {
 			.success(function(response){
 				deferred.resolve(response);
 			})
+			.error(function(response) {
+				deferred.reject();
+			});
+		return deferred.promise;
+	}
+
+	this.updateTodo = function(todo) {
+		var updateUrl = baseUrl + userId + todoSuffix + '/' + todo.id;
+
+		var deferred = $q.defer();
+		$http.put(updateUrl, todoData(todo))
+			.success(function(response) {
+				deferred.resolve();
+			}) 
 			.error(function(response) {
 				deferred.reject();
 			});

@@ -22,7 +22,10 @@
 			  ng-model="todo"
 			  as-sortable-item>
 		  <div as-sortable-item-handle>
-			  <label>{{ todo.description }}</label>
+		  	<form ng-submit="tdc.editTodo(todo)">
+				  <input type="text" ng-focus="tdc.saveOriginal(todo)" ng-model="todo.description" />
+		  	</form>
+			  <!-- <label ng-dblclick="">{{ todo.description }}</label> -->
 			</div>	
 		</li>
 	</ul>

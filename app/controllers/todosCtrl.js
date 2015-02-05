@@ -5,6 +5,8 @@ angular.module('TodoApp')
 
 function TodosCtrl(Api, TodosCollectionService) {
 
+	originalTodos = {};
+
 	this.errors = {
 		todoFetch: null,
 	}
@@ -45,4 +47,17 @@ function TodosCtrl(Api, TodosCollectionService) {
 	this.status = function(todo) {
 		return predicate(todo);
 	}
+
+	this.saveOriginal = function(todo) {
+		originalTodos[todo.id] = todo.description;
+	}
+
+	this.editTodo = function(todo) {
+		Api.updateTodo(todo).then(function() {
+			originalTodos[todo.id] = null;
+		}, function() {
+			todo.description = originalTodos[todo.id];
+		})
+	}
+
 }
