@@ -5,6 +5,7 @@ angular.module('TodoApp')
 
 function TodosCtrl(Api, TodosCollectionService) {
 
+	var that = this;
 	var originalTodos = {};
 
 	this.errors = {
@@ -14,7 +15,6 @@ function TodosCtrl(Api, TodosCollectionService) {
 	this.TodosCollectionService = TodosCollectionService;
 
 	var makeChart = function() {
-		// console.log(TodosCollectionService.todoCounts);
 		var pieChart = {};
 		pieChart.type = "PieChart";
 		pieChart.data = [
@@ -36,16 +36,15 @@ function TodosCtrl(Api, TodosCollectionService) {
       }]
     };
     return pieChart;
-	}
+	};
 
-	var that = this;
 	(function init() {
 		Api.fetchTodos().then(function(fetchedTodos) {
 			TodosCollectionService.setTodos(fetchedTodos);
+			that.chart = makeChart();
 		}, function() {
 			that.errors.todoFetch = "Experienced a problem loading your todos.";
 		})
-		that.chart = makeChart();
 	})();
 
 	var predicate = function(input) {
