@@ -1,3 +1,7 @@
+<div ng-controller="LoginCtrl as login">
+	<button ng-click="login.logout()">Logout</button>
+</div>
+
 <div ng-controller="TodosCtrl as tdc">
 
 	<div ng-controller="CreateTodoCtrl as creator">
@@ -8,8 +12,7 @@
 			<input type="submit" value="Put it on the list!" />
 		</form>
 	</div>
-	
-	{{ tdc.TodosCollectionService.todos }}
+
 	{{ tdc.errors.todoFetch }}
 	<input type="text" ng-model="query" />
 	<button ng-click="tdc.displayAll()">All Todos</button>
@@ -24,15 +27,20 @@
 		  <div as-sortable-item-handle>
 		  	<input type="checkbox" 
 		  				 ng-model="todo.is_complete" 
-		  				 ng-click="tdc.editTodo(todo)"/>
+		  				 ng-click="tdc.editTodo(todo, 'completion')"/>
 		  	<form ng-submit="tdc.editTodo(todo)">
 				  <input type="text" ng-focus="tdc.saveOriginal(todo)" ng-model="todo.description" />
 		  	</form>
-			  <!-- <label ng-dblclick="">{{ todo.description }}</label> -->
 			</div>	
 		</li>
 	</ul>
-			
 
-	
+	{{ tdc.TodosCollectionService.todoCounts }}
+			
+	<div google-chart 
+			 chart="tdc.chart"
+			 style="border:1px inset black;padding:0;width:400px;height:400px">
+	</div>
+	{{ tdc.chart|json }}
+
 </div>

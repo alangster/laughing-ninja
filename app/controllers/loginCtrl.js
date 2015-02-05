@@ -20,7 +20,11 @@ function LoginCtrl($location, Api) {
 	};
 
 	var redirect = function() {
-		$location.path('/todos');
+		if ($location.path() === '/') {
+			$location.path('/todos');
+		} else {
+			$location.path('/');
+		}
 	};
 
 	this.login = function() {
@@ -44,6 +48,12 @@ function LoginCtrl($location, Api) {
 		}, function(reason) {
 			that.errors.signup = reason;
 		});
+	};
+
+	this.logout = function() {
+		Api.logout().then(function() {
+			redirect();
+		}, function() {});
 	}
 }
 

@@ -52,6 +52,27 @@ function Api($http, $q) {
 		return deferred.promise;
 	}
 
+	this.logout = function() {
+		var logoutUrl = baseUrl + 'sign_out';
+		var data = {
+			'api_token': token,
+			'user_id': userId
+		}
+		console.log(data);
+		var deferred = $q.defer();
+		$http.delete(logoutUrl, data)
+			.success(function(response) {
+				token = null;
+				userId = null;
+				loggedIn = false;
+				deferred.resolve();
+			})
+			.error(function(response) {
+				deferred.reject();
+			});
+		return deferred.promise;
+	}
+
 	this.fetchTodos = function() {
 		var todosUrl = baseUrl + userId + todoSuffix + '.json?api_token=' + token;
 		var deferred = $q.defer();
