@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('TodoApp', ['ngRoute', 'ui.sortable']);
+	var app = angular.module('TodoApp', ['ngRoute', 'ui.sortable', 'googlechart']);
 
 	var requireLogin = function($location, $q, Api) {
 		var deferred = $q.defer();

@@ -13,13 +13,44 @@ function TodosCtrl(Api, TodosCollectionService) {
 
 	this.TodosCollectionService = TodosCollectionService;
 
-	var makeChart = function() {
+	// var makeChart = function() {
+	// 	console.log(TodosCollectionService.todoCounts);
+	// 	var pieChart = {};
+	// 	pieChart.type = "PieChart";
+	// 	pieChart.data = [
+	// 		['something','something else'],
+	// 		['Complete', TodosCollectionService.todoCounts.complete],
+	// 		['Incomplete', TodosCollectionService.todoCounts.incomplete]
+	// 	];
+	// 	pieChart.options = {
+ //      displayExactValues: true,
+ //      width: 400,
+ //      height: 200,
+ //      is3D: true,
+ //      chartArea: {left:10,top:10,bottom:0,height:"100%"}
+ //    };
+ //    pieChart.formatters = {
+ //      number : [{
+ //      	columnNum: 1,
+ //      	pattern: "$ #,##0.00"
+ //      }]
+ //    };
+ //    return pieChart;
+	// }
+
+	var that = this;
+	(function init() {
+		Api.fetchTodos().then(function(fetchedTodos) {
+			TodosCollectionService.setTodos(fetchedTodos);
+		}, function() {
+			that.errors.todoFetch = "Experienced a problem loading your todos.";
+		})
 		var pieChart = {};
 		pieChart.type = "PieChart";
 		pieChart.data = [
 			['something','something else'],
-			['Complete', 5],
-			['Incomplete', 5]
+			['Complete', TodosCollectionService.todoCounts.complete],
+			['Incomplete', TodosCollectionService.todoCounts.incomplete]
 		];
 		pieChart.options = {
       displayExactValues: true,
@@ -34,17 +65,7 @@ function TodosCtrl(Api, TodosCollectionService) {
       	pattern: "$ #,##0.00"
       }]
     };
-    return pieChart;
-	}
-
-	var that = this;
-	(function init() {
-		Api.fetchTodos().then(function(fetchedTodos) {
-			TodosCollectionService.setTodos(fetchedTodos);
-		}, function() {
-			that.errors.todoFetch = "Experienced a problem loading your todos.";
-		})
-		that.chart = makeChart();
+		that.chart = pieChart;
 	})();
 
 	var predicate = function(input) {
