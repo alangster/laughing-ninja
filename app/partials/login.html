@@ -1,6 +1,6 @@
 <div id="login-signup" ng-controller="LoginCtrl as login">
+	<h2>Todos</h2>
 	<div id="login">
-		<h3>Login</h3></br>
 		<form name="login.loginForm" ng-submit="login.login()">
 			<p>{{ login.errors.login }}</p>
 			<input name="email" ng-model="login.user.email" type="email" placeholder="Email"></br>
@@ -10,7 +10,6 @@
 	</div>
 
 	<div id="signup">
-		<h3>Sign Up</h3>
 		<form name="signUpForm" ng-submit="login.signUp()">
 			<p>{{ login.errors.signup }}</p>
 			</br>

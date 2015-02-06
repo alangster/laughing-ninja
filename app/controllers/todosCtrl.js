@@ -21,7 +21,7 @@ function TodosCtrl(Api, TodosCollectionService, $rootScope) {
 		var pieChart = {};
 		pieChart.type = "PieChart";
 		pieChart.data = [
-			['something','something else'],
+			['',''],
 			['Complete', counts.complete],
 			['Incomplete', counts.incomplete]
 		];
@@ -30,7 +30,8 @@ function TodosCtrl(Api, TodosCollectionService, $rootScope) {
       width: 400,
       height: 200,
       is3D: true,
-      chartArea: {left:10,top:10,bottom:0,height:"100%"}
+      chartArea: {left:10,top:10,bottom:0,height:"100%"},
+      colors: ['#4178FF', '#101E40']
     };
     return pieChart;
 	};
