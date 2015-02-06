@@ -1,0 +1,123 @@
+* {
+	-webkit-box-sizing: border-box;
+		 -moz-box-sizing: border-box;
+		 		  box-sizing: border-box;
+	margin: 0;
+	padding: 0; 
+}
+
+div#page-wrap {
+	min-width: 500px;
+	max-width: 1260px;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+}
+
+div#login-signup {
+	padding: 50px 100px 0 100px;
+	height: 200px;
+	width: 500px;
+	margin: 50px auto 0 auto;
+	text-align: center;
+}
+
+div#login-signup div {
+	width: 135px;
+	display: inline-block;
+	text-align: center;
+}
+
+div#login-signup h2 {
+	color: #213C7F;
+}
+
+input {
+	margin: 5px;
+	border:2px solid #213C7F;
+	padding: 2px;
+}
+
+input[type=submit] {
+	width: 80px;
+	height: 30px;
+	background-color: white;
+	color: #213C7F;
+	font-size: 12px;
+}
+
+input[type=submit]:hover {
+	background-color: #213C7F;
+	color: white;
+}
+
+div#todos-wrapper { 
+	width: 800px;
+	margin: 50px auto 0 auto;
+
+}
+
+div#todos-wrapper input[type=text] {
+	width: 300px;
+	height: 25px;
+}
+
+div#create-todo {
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 300px;
+}
+
+div#create-todo input[type=submit] {
+	width: 200px;
+	margin-left: 50px;
+}
+
+div#todos-display {
+	width: 350px;
+	float: left;
+/* 	border: 1px solid blue; */
+}
+
+div#display-controls {
+	padding-left: 18px;
+/* 	border: 1px solid orange; */
+}
+
+div#display-controls button {
+	background-color: white;
+	border: 2px solid #213C7F; 
+	color: #213C7F;
+	width: 100px;
+	font-size: 12px;
+}
+
+div#display-controls button.selected {
+	background-color: #213C7F;
+	color: white;
+}
+
+div#todo-list {
+	margin-top: 20px;
+}
+
+div#todo-list input[type=checkbox] {
+	float: left;
+}
+
+div#todo-list input[type=text] {
+	display: inline;
+	width: 275px
+}
+
+div#todo-list ul {
+	margin-left: 10px;
+	list-style-type: none;
+}
+
+div#chart {
+ 	float: left;
+	margin-left: 80px;
+	width: 10px;
+}
