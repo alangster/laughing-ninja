@@ -14,14 +14,15 @@
 	</div>
 
 	{{ tdc.errors.todoFetch }}
+
 	<input type="text" ng-model="query" />
 	<button ng-click="tdc.displayAll()">All Todos</button>
 	<button ng-click="tdc.displayComplete()">Complete</button>
 	<button ng-click="tdc.displayIncomplete()">Incomplete</button>
 
 	<ul as-sortable="tdc.dragControlListeners"
-			ng-model="tdc.TodosCollectionService.todos">
-		<li ng-repeat="todo in tdc.TodosCollectionService.todos | filter:query | filter:tdc.status"
+			ng-model="tdc.todos">
+		<li ng-repeat="todo in tdc.todos | filter:query | filter:tdc.status"
 			  ng-model="todo"
 			  as-sortable-item>
 		  <div as-sortable-item-handle>
@@ -34,13 +35,10 @@
 			</div>	
 		</li>
 	</ul>
-
-	{{ tdc.TodosCollectionService.todoCounts }}
 			
 	<div google-chart 
 			 chart="tdc.chart"
-			 style="border:1px inset black;padding:0;width:400px;height:400px">
+			 style="padding:0;width:400px">
 	</div>
-	{{ tdc.chart|json }}
 
 </div>

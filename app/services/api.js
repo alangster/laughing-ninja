@@ -42,7 +42,7 @@ function Api($http, $q) {
 		var deferred = $q.defer();
 		$http.post(baseUrl, data)
 			.success(function(response) {
-				storeInfo(response.api_token, response.user_id);
+				storeInfo(response.api_token, response.id);
 				loggedIn = true;
 				deferred.resolve();
 			})
@@ -58,7 +58,6 @@ function Api($http, $q) {
 			'api_token': token,
 			'user_id': userId
 		}
-		console.log(data);
 		var deferred = $q.defer();
 		$http.delete(logoutUrl, data)
 			.success(function(response) {
