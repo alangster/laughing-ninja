@@ -1,6 +1,3 @@
-<!-- <div ng-controller="LoginCtrl as login">
-	<button ng-click="login.logout()">Logout</button>
-</div> -->
 
 <div id="todos-wrapper" ng-controller="TodosCtrl as tdc">
 
@@ -11,6 +8,12 @@
 						 placeholder="What must you do?" />
 			<input type="submit" value="Put it on the list!" />
 		</form>
+	</div>
+
+	<div id="chart" 
+			 google-chart 
+			 chart="tdc.chart"
+			 style="padding:0;">
 	</div>
 
 	<div id="todos-display">
@@ -38,13 +41,6 @@
 				</li>
 			</ul>
 		</div>
-	</div>
-
-			
-	<div id="chart" 
-			 google-chart 
-			 chart="tdc.chart"
-			 style="padding:0;">
 	</div>
 
 </div>
