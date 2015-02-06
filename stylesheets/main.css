@@ -6,6 +6,11 @@
 	padding: 0; 
 }
 
+body {
+	background-image: url('/images/white_carbon.png');
+
+}
+
 div#page-wrap {
 	min-width: 500px;
 	max-width: 1260px;
