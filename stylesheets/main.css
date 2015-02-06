@@ -55,7 +55,6 @@ input[type=submit]:hover {
 div#todos-wrapper { 
 	width: 800px;
 	margin: 50px auto 0 auto;
-
 }
 
 div#todos-wrapper input[type=text] {
@@ -76,13 +75,10 @@ div#create-todo input[type=submit] {
 
 div#todos-display {
 	width: 350px;
-	float: left;
-/* 	border: 1px solid blue; */
 }
 
 div#display-controls {
 	padding-left: 18px;
-/* 	border: 1px solid orange; */
 }
 
 div#display-controls button {
@@ -117,7 +113,6 @@ div#todo-list ul {
 }
 
 div#chart {
- 	float: left;
-	margin-left: 80px;
-	width: 10px;
+ 	float: right;
+ 	clear: left;
 }
