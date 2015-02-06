@@ -42,12 +42,32 @@ function Api($http, $q) {
 		var deferred = $q.defer();
 		$http.post(baseUrl, data)
 			.success(function(response) {
-				storeInfo(response.api_token, response.user_id);
+				storeInfo(response.api_token, response.id);
 				loggedIn = true;
 				deferred.resolve();
 			})
 			.error(function(response) {
 				deferred.reject(response.email[0]);
+			});
+		return deferred.promise;
+	}
+
+	this.logout = function() {
+		var logoutUrl = baseUrl + 'sign_out';
+		var data = {
+			'api_token': token,
+			'user_id': userId
+		}
+		var deferred = $q.defer();
+		$http.delete(logoutUrl, data)
+			.success(function(response) {
+				token = null;
+				userId = null;
+				loggedIn = false;
+				deferred.resolve();
+			})
+			.error(function(response) {
+				deferred.reject();
 			});
 		return deferred.promise;
 	}

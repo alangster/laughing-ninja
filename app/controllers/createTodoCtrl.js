@@ -2,7 +2,7 @@
 angular.module('TodoApp')
 	.controller('CreateTodoCtrl', CreateTodoCtrl);
 
-function CreateTodoCtrl(Api, TodosCollectionService) {
+function CreateTodoCtrl(Api, TodosCollectionService, $rootScope) {
 
 	this.newTodo = {
 		description: "",
@@ -20,6 +20,7 @@ function CreateTodoCtrl(Api, TodosCollectionService) {
 			that.errors.todoCreation = null;
 			that.newTodo.description = "";
 			TodosCollectionService.addTodo(result);
+			$rootScope.$broadcast("add");
 		}, function() {
 			that.errors.todoCreation = "Could not save Todo.";
 		});
