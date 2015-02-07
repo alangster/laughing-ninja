@@ -46,6 +46,7 @@ function LoginCtrl($location, Api) {
 			that.errors.signup = null;
 			redirect();
 		}, function(reason) {
+			that.newUser.password = "";
 			that.errors.signup = reason;
 		});
 	};
