@@ -31,12 +31,13 @@ function TodosCtrl(Api, TodosCollectionService, $rootScope) {
       height: 200,
       is3D: true,
       chartArea: {left:10,top:10,bottom:0,height:"100%"},
-      colors: ['#4178FF', '#101E40']
+      colors: ['#4178FF', '#101E40'],
+      backgroundColor: 'none'
     };
     return pieChart;
 	};
 
-	(function init() {
+	(function init() {		
 		Api.fetchTodos().then(function(fetchedTodos) {
 			TodosCollectionService.setTodos(fetchedTodos);
 			that.todos = TodosCollectionService.getTodos();
