@@ -37,7 +37,7 @@ function TodosCtrl(Api, TodosCollectionService, $rootScope) {
     return pieChart;
 	};
 
-	(function init() {
+	(function init() {		
 		Api.fetchTodos().then(function(fetchedTodos) {
 			TodosCollectionService.setTodos(fetchedTodos);
 			that.todos = TodosCollectionService.getTodos();

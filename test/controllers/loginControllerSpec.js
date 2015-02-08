@@ -1,5 +1,5 @@
 describe('LoginCtrl', function() {
-	var scope, controller, ctrl, ApiServiceMock, q, deferred;
+	var scope, controller, ctrl, ApiServiceMock, q;
 
 	beforeEach(function() {
 		module('TodoApp');

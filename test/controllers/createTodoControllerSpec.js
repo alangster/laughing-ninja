@@ -1,5 +1,5 @@
 describe('CreateTodoCtrl', function() {
-	var scope, controller, ctrl, ApiServiceMock, TodosCollectionServiceMock, q, deferred;
+	var scope, controller, ctrl, ApiServiceMock, TodosCollectionServiceMock, q;
 
 	beforeEach(function() {
 		module('TodoApp');
